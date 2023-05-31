@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul>
+				<li><a href="">Home</a></li>
+				<li><a href="books">Books</a></li>
+				<li><a href="books">Books</a></li>
+				<li><a href="books">Books</a></li>
+			</ul>
+		</nav>
+		<style>
+			nav ul {
+				list-style-type: none;
+				padding: 0;
+			}
+
+			nav li {
+				display: inline-block;
+			}
+
+			nav a {
+				padding: 10px;
+				display: inline-block;
+				text-decoration: none;
+				background-color: bisque;
+				border: 1px solid black;
+				border-radius: 10px;
+			}
+
+			nav a:hover {
+				background-color: rgb(253, 185, 101);
+			}
+		</style>
+	</header>
+	<h1>Books</h1>
+
+	<table>
+		<form action="" method="post">
+			{% csrf_token %}
+			<tr>
+				<td><label for="book">Book:</label></td>
+				<td><input type="text" id="book" name="book" required></td>
+			</tr>
+			<tr>
+				<td><label for="year">Year:</label></td>
+				<td><input type="number" id="year" name="year" min="1900" max="2099" required></td>
+			</tr>
+			<tr>
+				<td><label for="price">Price:</label></td>
+				<td><input type="number" id="price" name="price" step="0.01" required></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<input type="submit" name="add_book" value="Submit">
+				</td>
+			</tr>
+		</form>
+		<script>
+			if (window.history.replaceState) {
+				window.history.replaceState(null, null, window.location.href);
+			}
+		</script>
+	</table>
+
+	<h2>Books List</h2>
+	
+
+	<table border="1">
+		{% for book in books %}
+		<tr>
+			<td>{{book.1}}</td>
+			<td>{{book.2}}</td>
+			<td>{{book.3}}</td>
+			<td>
+				<form action="" method="post">
+					{% csrf_token %}
+					<input type="hidden" name="id" value="{{book.0}}">
+					<input type="submit" name="delete" value="Delete">
+				</form>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+
+</body>
+</html>
