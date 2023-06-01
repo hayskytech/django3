@@ -6,6 +6,11 @@ def home(r):
 	# return HttpResponse("Hello world")
 	return render(r, "home.html")
 
+def about(req):
+	return render(req, "about.html")
+
+def contact(req):
+	return render(req, "contact.html")
 
 def books(req):
 	con = sqlite3.connect("db.sqlite3")
