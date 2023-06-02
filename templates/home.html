@@ -2,6 +2,11 @@
 
 
 {% block content %}
+
+{% load static %}
+<img src="{% static 'images/logo.png' %}" alt="My image">
+
+
 	<h1>Hello world</h1>
 	<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, quis vero. Dolore deleniti commodi sint consequatur ab illo temporibus optio doloribus nostrum laborum cupiditate repellat, impedit voluptas deserunt ipsa. Quo!</p>
 {% endblock %}

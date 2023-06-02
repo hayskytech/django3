@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<table border="1">
+<form action="" method="post">
+	{% csrf_token %}
+	<tr>
+		<td><label for="book">Book:</label></td>
+		<td><input type="text" id="book" name="book" required value="{{book}}"></td>
+	</tr>
+	<tr>
+		<td><label for="year">Year:</label></td>
+		<td><input type="number" id="year" name="year" value="{{year}}" required></td>
+	</tr>
+	<tr>
+		<td><label for="price">Price:</label></td>
+		<td><input type="number" id="price" name="price" value="{{price}}" required></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center">
+			<input type="submit" name="save" value="Save">
+		</td>
+	</tr>
+</form>
+</table>
+
+{% endblock %}

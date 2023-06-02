@@ -50,3 +50,29 @@ def books(req):
 
 
 	return render(req, "books.html", x )
+
+
+def book_edit(req):
+	con = sqlite3.connect("db.sqlite3")
+	cur = con.cursor()
+	id = req.POST.get("id")
+
+	if req.POST.get("save"):
+		book = req.POST.get("book")
+		year = req.POST.get("year")
+		price = req.POST.get("price")
+
+		print(book)
+
+		cur.execute("UPDATE books set book=?, year=?, price=?  WHERE id=?", (book, year, price ,id) )
+		con.commit()
+
+	data = cur.execute("SELECT * FROM books WHERE id=?" , id ).fetchone()
+	x = {
+		"book" : data[1],
+		"year" : data[2],
+		"price" : data[3],
+	}
+
+
+	return render(req, "book_edit.html", x )
