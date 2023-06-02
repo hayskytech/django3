@@ -3,6 +3,7 @@
 
 <table border="1">
 <form action="" method="post">
+	<input type="hidden" name="id" value="{{id}}">
 	{% csrf_token %}
 	<tr>
 		<td><label for="book">Book:</label></td>
@@ -23,5 +24,7 @@
 	</tr>
 </form>
 </table>
+
+<h2>{{msg}}</h2>
 
 {% endblock %}

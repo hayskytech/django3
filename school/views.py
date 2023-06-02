@@ -56,23 +56,23 @@ def book_edit(req):
 	con = sqlite3.connect("db.sqlite3")
 	cur = con.cursor()
 	id = req.POST.get("id")
-
+	msg = ""
 	if req.POST.get("save"):
 		book = req.POST.get("book")
 		year = req.POST.get("year")
 		price = req.POST.get("price")
 
-		print(book)
-
 		cur.execute("UPDATE books set book=?, year=?, price=?  WHERE id=?", (book, year, price ,id) )
 		con.commit()
+		msg = "Book updated."
 
 	data = cur.execute("SELECT * FROM books WHERE id=?" , id ).fetchone()
 	x = {
+		"id" : id,
 		"book" : data[1],
 		"year" : data[2],
 		"price" : data[3],
+		"msg" : msg
 	}
-
 
 	return render(req, "book_edit.html", x )
